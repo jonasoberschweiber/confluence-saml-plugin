@@ -102,12 +102,13 @@ public class SsoLoginServlet extends HttpServlet {
 
 	        request.getSession().setAttribute("SAMLCredential", credential);
 
-	        String userName = ((XSAny)credential.getAttributes().get(0).getAttributeValues().get(0)).getTextContent();
+	        String userName = credential.getNameID().getValue(); 
 
 	        authenticateUserAndLogin(request, response, userName);
 		} catch (AuthenticationException e) {
 			try {
-			    log.error("saml plugin error + " + e.getMessage());
+			    log.error("saml plugin error + " + e.toString());
+					e.printStackTrace();
 				response.sendRedirect("/confluence/login.action?samlerror=plugin_exception");
 			} catch (IOException e1) {
 				throw new ServletException();
