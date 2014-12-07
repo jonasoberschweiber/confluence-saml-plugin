@@ -98,6 +98,7 @@ public class SsoLoginServlet extends HttpServlet {
 	        messageContext.getPeerEntityMetadata().setEntityID(saml2Config.getIdpEntityId());
 
 	        WebSSOProfileConsumer consumer = new WebSSOProfileConsumerImpl(context.getSamlProcessor(), context.getMetadataManager());
+					consumer.setMaxAuthenticationAge(60 * 60 * 8); // 8 hours
 	        SAMLCredential credential = consumer.processAuthenticationResponse(messageContext);
 
 	        request.getSession().setAttribute("SAMLCredential", credential);
