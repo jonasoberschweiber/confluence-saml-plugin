@@ -74,6 +74,7 @@ public class SsoLoginServlet extends HttpServlet {
 			// Generate options for the current SSO request
 	        WebSSOProfileOptions options = new WebSSOProfileOptions();
 	        options.setBinding(org.opensaml.common.xml.SAMLConstants.SAML2_REDIRECT_BINDING_URI);
+					options.setIncludeScoping(false);
 
 			// Send request
 	        WebSSOProfile webSSOprofile = new WebSSOProfileImpl(context.getSamlProcessor(), context.getMetadataManager());
