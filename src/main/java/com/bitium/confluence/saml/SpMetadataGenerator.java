@@ -21,6 +21,8 @@
  */
 package com.bitium.confluence.saml;
 
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 
 import org.opensaml.saml2.metadata.EntityDescriptor;
@@ -46,6 +48,9 @@ public class SpMetadataGenerator {
 
         generator.setEntityAlias(alias);
         generator.setEntityBaseURL(baseURL);
+				ArrayList<String> ssoBindings = new ArrayList<String>();
+				ssoBindings.add("post");
+				generator.setBindingsSSO(ssoBindings);
 
         // Use default entityID if not set
         if (generator.getEntityId() == null) {
